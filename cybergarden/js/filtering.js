@@ -18,7 +18,7 @@ function sendData() {
 
     // Используем AJAX для отправки данных на сервер
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "filtering.php", true);
+    xhr.open("POST", "./filtering.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
 
     // Преобразуем массив в JSON и отправляем на сервер

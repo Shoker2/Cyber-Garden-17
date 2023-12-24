@@ -15,6 +15,21 @@ function get_tag_name($id) {
     return "";
 }
 
+function get_tag_list() {
+    $conn = db_connect();
+
+    $result = $conn->query("SELECT * FROM `attraction_tags`");
+
+    $conn->close();
+
+    $tags = array();
+    foreach ($result as $row) {
+        $tags[] = $row['id'];
+    }
+
+    return $tags;
+}
+
 function get_tag_id($name) {
     $conn = db_connect();
 
@@ -37,8 +52,10 @@ function get_attractions_id_by_tag_id($tag_ids)
     $count_atts = 0;
 
     foreach ($tag_ids as $id) {
-        $count_atts += 1;
-        $conditions[] = "FIND_IN_SET('$id', tags) > 0";
+        if (strlen($id) > 0) {
+            $count_atts += 1;
+            $conditions[] = "FIND_IN_SET('$id', tags) > 0";
+        }
     }
 
     $sql = implode(' AND ', $conditions);

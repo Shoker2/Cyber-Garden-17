@@ -1,0 +1,24 @@
+/* Для светлой темы */
+:root {
+    --text-color: black;
+    --bg-color: #ffffff;
+}
+body
+{
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    
+}
+.block_for_registarion
+{
+    background-color: #448fcc;
+}
+
+.bottom_input
+{
+    color: var(--text-color);
+}
+/* смена режима дня на ночь */
+.changeTheme:hover{
+    background: var(--bg-color);
+}

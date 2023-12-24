@@ -2,8 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Памятники Таганрога</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
       rel="stylesheet"
@@ -11,38 +13,59 @@
   </head>
 
   <body>
+    <?php
+      if (!(array_key_exists("login", $_COOKIE) && array_key_exists("password", $_COOKIE))) {
+        setcookie("login", "-");
+        setcookie("password", "-");
+      } else {
+        require_once "../db-users.php";
+        if (!chech_login_password($_COOKIE['login'], $_COOKIE['password'])) {
+          setcookie("login", "-");
+          setcookie("password", "-");
+        }
+      }
+    ?>
+
+    <?php
+      if(isset($_POST['logout'])) { 
+        setcookie("login", "-");
+        setcookie("password", "-");
+      }
+    ?>
+
     <div>
-      <div class="header">
-        <!-- TODO: картинка ломается, когда меняешь разрешение сайта (компатибилити) -->
-        <div class="logo-container">
-          <img src="icons/logo.png" class="logo" />
-        </div>
-
-        <div class="header-text">
-          <h1>Монументы Таганрога</h1>
-        </div>
-
-        <div class="auth-container">
-          <button class="register-button">Зарегистрироваться</button>
-          <button class="login-button">Войти</button>
-        </div>
-      </div>
+      <?php require_once "./templates/nav.php";?>  
+    </div>
 
       <div class="main-container">
         <div class="text-parent">
-          <h1 class="open-map-text">Карта</h1>
+          <h1 class="map-text" onclick="toggleMapIframe()">Карта</h1>
         </div>
 
         <div class="map-iframe">
-        <iframe width="90%" height="700" frameborder="0" scrolling="no" src="https://widgets.scribblemaps.com/sm/?d&dv&cv&z&l&gc&af&mc&lat=47.22829529&lng=38.91035255&vz=13&type=road&ti&s&width=550&height=400&id=Z6QVuzEEBC" allowfullscreen allow="geolocation" loading="lazy"></iframe>
+          <iframe width="90%" height="700" frameborder="0" scrolling="no" src="https://widgets.scribblemaps.com/sm/?d&dv&cv&z&l&gc&af&mc&dfe&lat=47.21380764&lng=38.92494768&vz=13&type=custom_style&s&width=550&height=400&id=Z6QVuzEEBC" allowfullscreen allow="geolocation" loading="lazy"></iframe>
         </div>
 
-        <form id="myForm">
-          <label><input type="checkbox" name="checkbox" id="1"> Первый</label><br>
-          <label><input type="checkbox" name="checkbox" id="2"> Second</label><br>
-          <label><input type="checkbox" name="checkbox" id="3"> Teeest</label><br>
-          <button type="button" onclick="sendData()">Отфильтровать</button>
-        </form>
+        <div class="checkbox-dropdown">
+          Выбери фильтры
+          <ul style="background-color: white;" class="checkbox-dropdown-list">
+
+            <?php
+              require_once "../db-attractions.php";
+              $ids = get_tag_list();
+
+              foreach ($ids as $id) {
+                echo "
+                <li>
+                  <label> <input type=\"checkbox\" name=\"checkbox\" id=\"" . $id . "\"/> " . get_tag_name($id) . " </label>
+                </li>
+                ";
+              }
+            ?>
+
+          </ul>
+        </div>
+        <button type="button" style="margin: 0 auto; display: block;" onclick="sendData()">Отфильтровать</button>
 
         <div class="text-parent">
           <h1 class="info-text">Достопримечательности</h1>
@@ -59,27 +82,9 @@
               foreach ($newStr as $value) {
                 $tags[] = $value;
               }
-        
-              // foreach ($elements as $id_tag) {
-              //     echo get_tag_name($id_tag) . " ";
-              // }
 
             }
             $results = get_attractions_id_by_tag_id($tags);
-
-            // foreach ($results as $id) {
-            //   echo "<li class=\"monument-container\">
-            //       <img class=\"image-src\" src=\"" . get_attraction_img_by_id($id) . "\" />
-            //       <div class=\"image-text\">
-            //         <div class=\"text-container\">
-            //           <h1 class=\"image-header\"> ". get_attraction_name_by_id($id) . " </h1>
-            //           <a href=" . get_attraction_mapurl_by_id($id) . " class=\"map-link\">Открыть на карте</a>
-            //         </div>
-      
-            //         <div class=\"image-description\">Lorem ipsum</div>
-            //       </div>
-            //     </li>";
-            // }
 
             foreach ($results as $id) {
               echo "<li class=\"monument-container\">
@@ -88,6 +93,7 @@
                 <div class=\"card-body\">
                   <h5 class=\"card-title image-title\">". get_attraction_name_by_id($id) . "</h5>  
                   <a href=\"" . get_attraction_mapurl_by_id($id) . "\" class=\"map-link\">Открыть на карте</a>
+                  <a onclick=\"addBookMark(" . $id . ")\" class=\"map-link\">Добавить в закладки</a>
                 </div>
               </div>
             </li>";
@@ -98,6 +104,16 @@
       </div>
     </div>
 
-    <script src="filtering.js"></script>
+
+    <div>
+      <?php require_once "./templates/footer.php";?>  
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="./js/filtering.js"></script>
+    <script src="./js/hide.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/tools.js"></script>
   </body>
 </html>

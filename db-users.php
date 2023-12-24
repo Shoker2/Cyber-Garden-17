@@ -112,9 +112,12 @@ function read_bookmarks($login, $password)
             $bookmarks_user = $row['bookmarks'];
         }
 
+        if (strlen($bookmarks_user) == 0) {
+            return array();
+        }
+
         $conn->close();
         return explode(",", $bookmarks_user);
-        // return array(str_split($bookmarks_user, 1));
     }
     else {
         $conn->close();
@@ -138,6 +141,28 @@ function add_bookmarks($login, $password, $new_bookmark) {
     }
 
     $conn->close();
+    return explode(",", $bookmarks_user);
+}
+
+function remove_bookmarks($login, $password, $remove_bookmark) 
+{
+    $conn = db_connect();
+
+    if (chech_login_password($login, $password)) {
+        $result = $conn->query("SELECT * FROM `users` WHERE login='" . $login . "';");
+
+        foreach ($result as $row) {
+            $bookmarks_user = $row['bookmarks'];
+        }
+        
+        $bookmarks_user = implode(',', array_diff(explode(",", $bookmarks_user), array($remove_bookmark)));
+        $result = "{$bookmarks_user}";
+
+        $sql = $conn->query("UPDATE `users` SET `bookmarks` = '" . $result . "' WHERE `users`.`login` = '" . $login . "'");
+    }
+
+    $conn->close();
+    return explode(",", $bookmarks_user);
 }
 
 ?>
