@@ -16,7 +16,7 @@ function login() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       if (xhr.responseText == "OK") {
         window.location.href = './index.php';
-      } else if (password.length == 0 || password.length >= 16) {
+      } else {
         document.getElementById('error-mess-txt').textContent = "Не правильный логин или пароль";
         document.getElementById('error-mess').style.display = "block";
       }

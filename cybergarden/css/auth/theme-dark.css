@@ -1,42 +1,40 @@
 :root {
-    --text-color: #ffffff;
-    --bg-color: #222;
-    --border-color: #448fcc;
-    --white-color: white;
+  --text-color: #ffffff;
+  --bg-color: #222;
+  --border-color: #448fcc;
+  --white-color: white;
+  margin: 0;
+  padding: 0;
 }
-body
-{
-    color: var(--bg-color);
-    background-color: var(--bg-color);
-    
+body {
+  font-family: "Montserrat", sans-serif;
+  color: var(--bg-color);
+  background-color: var(--bg-color);
 }
-.block_for_registarion
-{
-    border-color: var(--border-color);
-    background-color: var(--border-color);
+.main_section {
+  font-family: "Montserrat", sans-serif;
 }
-.top_input
-{
-    color: var(--bg-color);
+.block_for_registarion {
+  border-color: var(--border-color);
+  background-color: var(--border-color);
 }
-.bottom_input
-{
-    color: var(--bg-color);
+.top_input {
+  color: var(--bg-color);
+}
+.bottom_input {
+  color: var(--bg-color);
 }
 /* смена режима дня на ночь */
 
-.changeTheme:hover{
-    background: var(--bg-color);
+.changeTheme:hover {
+  background: var(--bg-color);
 }
-.main_btn
-{
-    background-color: var(--white-color);
+.main_btn {
+  background-color: var(--white-color);
 }
-.changeTheme[data-theme ="light"]
-{
-    display: block;
+.changeTheme[data-theme="light"] {
+  display: block;
 }
-.changeTheme[data-theme ="dark"]
-{
-    display: none ;
+.changeTheme[data-theme="dark"] {
+  display: none;
 }

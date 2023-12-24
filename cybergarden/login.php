@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,10 +7,12 @@
     <link rel="stylesheet" href="./css/auth/login.css">
     <link rel="stylesheet" href="./css/auth/theme-light.css" id="theme-light">
     <link rel="stylesheet" href="./css/auth/theme-dark.css" id="theme-dark">
+    <link rel="stylesheet" href="./css/media_for_entry.css">
     <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
     rel="stylesheet"
     >
+    <link rel="icon" href="icons/logo.png" type="image/png" />
     <link rel="stylesheet" href="#" title="theme">
 </head>
 <body>

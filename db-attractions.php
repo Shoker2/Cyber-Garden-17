@@ -120,4 +120,38 @@ function get_attraction_mapurl_by_id($id)
     return "";
 }
 
+function get_reviews_by_id($id)
+{
+    $conn = db_connect();
+
+    $attractions = $conn->query("SELECT * FROM `attraction_reviews` WHERE id=" . $id . ";");
+
+    $conn->close();
+
+    foreach ($attractions as $row) {
+        return json_decode($row['reviews']);
+    }
+    
+    return;
+}
+
+
+function add_reviews_by_id($id, $login, $text)
+{
+    $conn = db_connect();
+
+    $rews = get_reviews_by_id($id);
+    $rews->{'rews'}[] = [
+        "name" => $login,
+        "text" => $text
+    ];
+
+    $conn->query("UPDATE `attraction_reviews` SET `reviews` = '" . json_encode($rews, JSON_UNESCAPED_UNICODE) . "' WHERE `attraction_reviews`.`id` = " . $id);
+
+    $conn->close();
+    
+    return;
+}
+
+
 ?>

@@ -1,0 +1,122 @@
+@media (max-width: 1068px) {
+  .block_for_registration {
+    width: 700px;
+    height: 600px;
+  }
+}
+@media (max-width: 946px) {
+  .block_for_registration {
+    height: 500px;
+  }
+}
+@media (max-width: 860px) {
+  .block_for_registration {
+    height: 500px;
+  }
+}
+@media (max-width: 768px) {
+  .block_for_registration {
+    height: 500px;
+  }
+  .bottom_input {
+    font-size: 20px;
+  }
+  .top_input {
+    font-size: 20px;
+  }
+  .main_btn {
+    font-size: 20px;
+  }
+}
+@media (max-width: 820px) {
+  .top_input {
+    font-size: 20px;
+  }
+  .bottom_input {
+    font-size: 20px;
+  }
+  .main_btn {
+    font-size: 20px;
+  }
+}
+@media (max-width: 728px) {
+  .block_for_registration {
+    height: 500px;
+    width: 650px;
+  }
+}
+@media (max-width: 696px) {
+  .block_for_registration {
+    height: 500px;
+    width: 550px;
+  }
+}
+@media (max-width: 599px) {
+  .block_for_registration {
+    height: 500px;
+    width: 500px;
+  }
+}
+@media (max-width: 531px) {
+  .block_for_registration {
+    height: 450px;
+    width: 450px;
+  }
+}
+@media (max-width: 471px) {
+  .block_for_registration {
+    height: 400px;
+    width: 450px;
+  }
+}
+@media (max-width: 469px) {
+  .block_for_registration {
+    height: 400px;
+    width: 400px;
+  }
+  .top_input {
+    width: 350px;
+  }
+  .bottom_input {
+    width: 350px;
+  }
+  .main_btn {
+    width: 360px;
+  }
+}
+@media (max-width: 429px) {
+  .block_for_registration {
+    height: 350px;
+    width: 400px;
+  }
+  .top_input {
+    width: 300px;
+  }
+  .bottom_input {
+    width: 300px;
+  }
+  .main_btn {
+    width: 310px;
+  }
+}
+@media (max-width: 417px) {
+  .block_for_registration {
+    height: 350px;
+    width: 350px;
+    border-radius: 80px;
+  }
+  .top_input {
+    width: 250px;
+  }
+  .bottom_input {
+    width: 250px;
+  }
+  .main_btn {
+    width: 260px;
+  }
+}
+@media (max-width: 451px) {
+  .block_for_registration {
+    border-radius: 80px;
+  }
+}

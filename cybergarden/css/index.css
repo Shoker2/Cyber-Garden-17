@@ -88,6 +88,7 @@ body {
   display: inline-block;
   justify-content: center;
   justify-items: center;
+  padding-bottom: 15px;
 }
 
 .map-text {
@@ -113,7 +114,6 @@ body {
 }
 
 .image-gallery li img {
-  object-fit: cover;
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -178,7 +178,7 @@ body {
   position: relative;
   margin: 0 auto;
   z-index: 55;
-
+  /* border-radius: 25px; */
   user-select: none;
 }
 
@@ -211,13 +211,13 @@ body {
   left: -1px;
   right: -1px;
   opacity: 0;
-
   transition: opacity 0.3s ease-in-out;
   height: 130px;
   overflow: scroll;
   overflow-x: hidden;
   pointer-events: none;
 }
+
 .is-active .checkbox-dropdown-list {
   opacity: 1;
   pointer-events: auto;
@@ -227,7 +227,6 @@ body {
   display: block;
   border-bottom: 1px solid silver;
   padding: 10px;
-
   transition: all 0.3s ease-out;
 }
 
@@ -252,4 +251,82 @@ footer {
   font-weight: 1000;
   align-items: center;
   justify-content: center;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+}
+
+.filter-button,
+.main_btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.filter-button:hover,
+.main_btn:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.filter-button {
+  padding: 15px 0 7.5px 0;
+}
+
+.review-box {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.review-box .name {
+  font-size: 24px;
+  font-weight: 1000;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .info-text {
+    font-size: 26px;
+  }
+
+  .register-button,
+  .login-button {
+    font-size: 18px;
+  }
+
+  .monument-container {
+    display: flex;
+    justify-content: center;
+  }
+  .card-img-top {
+    max-width: 100%;
+  }
+}
+/* кастомный скролл */
+::-webkit-scrollbar
+{
+    width: 15px;
+
+}
+::-webkit-scrollbar-track{
+    background: #d4d4d4;
+    box-shadow: 0 0 2px rgba(0,0,0,.2) inset;
+}
+::-webkit-scrollbar-thumb
+{
+    background: #939393;
+    border-radius: 15px;
+    border: 3px solid #d4d4d4;
 }

@@ -18,14 +18,12 @@
       if (!(array_key_exists("login", $_COOKIE) && array_key_exists("password", $_COOKIE))) {
         setcookie("login", "-");
         setcookie("password", "-");
+        echo "<script>location.reload();</script>";
       } else {
         require_once "../db-users.php";
         if (!chech_login_password($_COOKIE['login'], $_COOKIE['password'])) {
           setcookie("login", "-");
           setcookie("password", "-");
-          echo '<script type="text/JavaScript">  
-            window.location.href = "./index.php"; 
-                  </script>';
         }
       }
     ?>
@@ -77,35 +75,69 @@
       </div>
     </nav>
 
+      <script>
+        function addRew(id) {
+          let text = document.getElementById('rew').value;
+
+          let xhr = new XMLHttpRequest();
+          xhr.open("POST", "./add-rew-req.php", true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+
+          let obj = new Object();
+          obj.id = id;
+          obj.text = text;
+
+          xhr.send(JSON.stringify(obj));
+
+          xhr.onreadystatechange = function () {
+            console.log(xhr.responseText);
+            location.reload();
+          };
+        }
+      </script>
+
     <div class="main-container">
-        <div class="text-parent">
-          <h1 class="">Закладки</h1>
-        </div>
-
-        <br>
-
-        <ul class="image-gallery">
-          <?php
+        <?php
             require_once "../db-users.php";
             require_once "../db-attractions.php";
 
-            $bookmarks = read_bookmarks($_COOKIE['login'], $_COOKIE['password']);
-
-            foreach ($bookmarks as $id) {
-                echo "<li class=\"monument-container\">
-                <div class=\"card\" style=\"width: 18rem;\">
-                  <img src=\"" . get_attraction_img_by_id($id) . "\" class=\"card-img-top image-src\" alt=\"...\">
-                  <div class=\"card-body\">
-                    <a href=\"./fullpost.php?id=" . $id . "\" class=\"card-title image-title\">". get_attraction_name_by_id($id) . "</a>  
-                    <a href=\"" . get_attraction_mapurl_by_id($id) . "\" class=\"map-link\">Открыть на карте</a>
-                    <a onclick=\"removeBookMark(" . $id . ")\" class=\"map-link\">Удалить из закладок</a>
-                  </div>
-                </div>
-              </li>";
+            if(!isset($_GET['id']))
+            {
+              echo "<script>window.location.href = './index.php';</script>";
+              exit();
             }
+
+            $id = $_GET['id'];
+
+            echo "<div class=\"text-parent\">
+        <h1>" . get_attraction_name_by_id($id) . "</h1>
+      </div>
+      
+      <div style=\"display: flex; justify-content: center;\">
+        <img src=\"" . get_attraction_img_by_id($id) . "\" class=\" \" style=\"max-width: 50%;\" alt=\"...\">
+      </div>";
+
+echo "<div class=\"text-parent\">
+        <h1>Отзывы</h1>
+      </div>";
+
+$rews = get_reviews_by_id($id);
+
+    if (count(array_keys(json_decode(json_encode($rews), true))) > 0) {
+      foreach ($rews->{'rews'} as $value) {
+        echo "<div class=\"review-box\">";
+        echo "<span class=\"name\">" . $value->{'name'} . "</span>";
+        echo "<br>";
+        echo $value->{'text'};
+        echo "</div><br>";
+      }
+    }
+
+    echo "<div class=\"input-container\">
+    <input id=\"rew\" name=\"rew\" type=\"tex\" class=\"top_input\" placeholder=\"Введите отзыв\">
+    <button onclick=\"addRew(" . $id . ")\" class=\"main_btn\">Оставить отзыв</button>
+  </div>";
           ?>
-        
-        </ul>
 
     </div>
 

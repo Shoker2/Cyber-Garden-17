@@ -1,24 +1,27 @@
 /* Для светлой темы */
 :root {
-    --text-color: black;
-    --bg-color: #ffffff;
+  --text-color: black;
+  --bg-color: #ffffff;
 }
-body
-{
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
 }
-.block_for_registarion
-{
-    background-color: #448fcc;
+.block_for_registarion {
+  background-color: #448fcc;
 }
 
-.bottom_input
-{
-    color: var(--text-color);
+.bottom_input {
+  color: var(--text-color);
 }
 /* смена режима дня на ночь */
-.changeTheme:hover{
-    background: var(--bg-color);
+.changeTheme:hover {
+  background: var(--bg-color);
+}
+
+.main_section {
+  font-family: "Montserrat", sans-serif;
 }

@@ -1,113 +1,106 @@
 :root {
-    --text-color: black;
-    --bg-color: white;
-    --first-temp-color: #448fcc;
-    --second-temp-color: #dbdbdb; 
+  --text-color: black;
+  --bg-color: white;
+  --first-temp-color: #448fcc;
+  --second-temp-color: #dbdbdb;
+  margin: 0;
+  padding: 0;
 }
-  
-body {
-    color: black;
-    background-color: var(--bg-color);
-    transition: background-color 0.3s ease-in-out;
-}
-  
-body
-{
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
-    
-}
-.block_for_registration
-{
-    background-color: var(--first-temp-color);
-    width: 700px;
-    height: 700px;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%; 
-    transform: translate(-50%,-50%);
-    position: absolute;
-    border-radius: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.class_for_input
-{
-    width: fit-content;
-    height: fit-content;
-    text-align: center;
-}
-.top_input
-{
-    width: 400px;
-    height: 30px;
-    margin-bottom: 15px;
-    font-size: 18px;
-    opacity: 1;
-    border-radius: 30px;
-    padding: 5px;
-    color: var(--text-color);
-    border: 0px solid var(--bg-color);
-    text-align: center; 
-}
-.bottom_input
-{
-    width: 400px;
-    height: 30px;
-    margin-bottom: 0px;
-    font-size: 18px;
-    opacity: 1;
-    color: var(--text-color);
-    border-radius: 30px;
-    padding: 5px;
-    border: 0px solid var(--bg-color);
-    text-align: center;
-}
-.main_btn
-{
-    text-align: center;
-    font-size: 20px;
-    border: 0px solid var(--bg-color);
-    padding-top: 10px;
-    padding-bottom: 30px;
-    opacity: 1;
-    border-radius: 30px;
-    width: 410px;
-    height: 30px;
-    margin-top: 30px;
-    font-weight: bold;
-    background-color: var(--bg-color);
-    letter-spacing: 2px;
-    outline: none;
-}
-.main_btn:hover
-{
-    
-    cursor: pointer;
-}
-/* смена режима дня на ночь */
 
-.theme
-{
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
+body {
+  color: black;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease-in-out;
+  font-family: "Montserrat", sans-serif;
 }
-.changeTheme
-{
-    border-radius: 20px;
-    transition: 0.3s;
-    background-color: transparent;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
+
+.main_section {
+  font-family: "Montserrat", sans-serif;
 }
-.changeTheme:hover{
-    background: var(--second-temp-color);
+
+.block_for_registration {
+  background-color: var(--first-temp-color);
+  width: 700px;
+  height: 700px;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-radius: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.class_for_input {
+  width: fit-content;
+  height: fit-content;
+  text-align: center;
+}
+.top_input {
+  width: 400px;
+  height: 30px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  opacity: 1;
+  border-radius: 30px;
+  padding: 5px;
+  color: var(--text-color);
+  border: 0px solid var(--bg-color);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.bottom_input {
+  width: 400px;
+  height: 30px;
+  margin-bottom: 0px;
+  font-size: 18px;
+  opacity: 1;
+  color: var(--text-color);
+  border-radius: 30px;
+  padding: 5px;
+  border: 0px solid var(--bg-color);
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+.main_btn {
+  text-align: center;
+  font-size: 20px;
+  border: 0px solid var(--bg-color);
+  padding-top: 10px;
+  padding-bottom: 30px;
+  opacity: 1;
+  border-radius: 30px;
+  width: 410px;
+  height: 30px;
+  margin-top: 30px;
+  font-weight: bold;
+  background-color: var(--bg-color);
+  letter-spacing: 2px;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+}
+.main_btn:hover {
+  cursor: pointer;
+}
+
+.theme {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+.changeTheme {
+  border-radius: 20px;
+  transition: 0.3s;
+  background-color: transparent;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+.changeTheme:hover {
+  background: var(--second-temp-color);
 }

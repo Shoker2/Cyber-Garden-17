@@ -41,3 +41,21 @@ function removeBookMark(id) {
     location.reload();
   };
 }
+
+function addRew(id) {
+  let text = document.getElementById('rew').value;
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "./add-rew-req.php", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  var obj = new Object();
+  obj.id = id;
+  obj.text = text;
+
+  xhr.send(JSON.stringify(obj));
+
+  xhr.onreadystatechange = function () {
+    location.reload();
+  };
+}

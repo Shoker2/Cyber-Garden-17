@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" href="icons/logo.png" type="image/png" />
   </head>
 
   <body>
@@ -17,6 +18,7 @@
       if (!(array_key_exists("login", $_COOKIE) && array_key_exists("password", $_COOKIE))) {
         setcookie("login", "-");
         setcookie("password", "-");
+        echo "<script>location.reload();</script>";
       } else {
         require_once "../db-users.php";
         if (!chech_login_password($_COOKIE['login'], $_COOKIE['password'])) {
@@ -33,9 +35,45 @@
       }
     ?>
 
-    <div>
-      <?php require_once "./templates/nav.php";?>  
-    </div>
+<nav class="navbar navbar-expand-lg header">
+      <div class="container-fluid">
+
+      <a class="navbar-brand" href="./index.php">
+        <img src="icons/logo.png" alt="Bootstrap" width="70" height="70">
+      </a>
+
+      <div class="header-text">
+        <h1 onclick="openIndex()">Монументы Таганрога</h1>
+      </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+
+          <ul class="nav navbar-nav">
+            <?php
+            
+            if ($_COOKIE['login'] == '-') {
+              echo "<li class=\"d-flex nav-item\">
+                      <a href=\"./registration.php\" class=\"register-button\">Зарегистрироваться</a>
+                      <a href=\"./login.php\" class=\"login-button\">Войти</a>
+                      </li>
+                      ";
+            } else {
+              echo "<li class=\"d-flex nav-item\">
+              <a href=\"./bookmarks.php\" class=\"register-button\">Закладки</a>
+              <a href=\"./\" class=\"register-button\">" . $_COOKIE['login'] . "</a>
+              <button name=\"logout\" onclick=\"logout()\" class=\"login-button\">Выйти</button>
+              </li>
+              ";
+            }
+            ?>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
 
       <div class="main-container">
         <div class="text-parent">
@@ -65,7 +103,7 @@
 
           </ul>
         </div>
-        <button type="button" style="margin: 0 auto; display: block;" onclick="sendData()">Отфильтровать</button>
+        <button class="filter-button" type="button" style="margin: 0 auto; display: block;" onclick="sendData()">Отфильтровать</button>
 
         <div class="text-parent">
           <h1 class="info-text">Достопримечательности</h1>
@@ -91,7 +129,7 @@
               <div class=\"card\" style=\"width: 18rem;\">
                 <img src=\"" . get_attraction_img_by_id($id) . "\" class=\"card-img-top image-src\" alt=\"...\">
                 <div class=\"card-body\">
-                  <h5 class=\"card-title image-title\">". get_attraction_name_by_id($id) . "</h5>  
+                  <a href=\"./fullpost.php?id=" . $id . "\" class=\"card-title image-title\">". get_attraction_name_by_id($id) . "</a>  
                   <a href=\"" . get_attraction_mapurl_by_id($id) . "\" class=\"map-link\">Открыть на карте</a>
                   <a onclick=\"addBookMark(" . $id . ")\" class=\"map-link\">Добавить в закладки</a>
                 </div>

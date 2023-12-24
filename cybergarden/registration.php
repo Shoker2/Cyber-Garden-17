@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Окно регистрации</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/auth/registration.css">
     <link rel="stylesheet" href="./css/auth/theme-light.css" id="theme-light">
     <link rel="stylesheet" href="./css/auth/theme-dark.css" id="theme-dark">
-    <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap"
-    rel="stylesheet"
-    >
     <link rel="shortcut icon" href="../../images/icon.png">
     <link rel="stylesheet" href="#" title="theme">
     <link rel="stylesheet" href="../../css/media_for_style.css  ">
+    <link rel="icon" href="icons/logo.png" type="image/png" />
 </head>
 <body>
     <?php
@@ -36,7 +34,7 @@
                 <br>
                 <input id="passTxt" type="password" class="top_input" placeholder="Пароль">
                 <br>
-                <input id="pass2Txt" type="password" class="bottom_input" placeholder="Повторите Пароль">
+                <input id="pass2Txt" type="password" class="bottom_input" placeholder="Повторите пароль">
                 <br>
                 <button onclick="registration()" class="main_btn">Зарегистрироваться</button>
                 <div id="error-mess" style="display: none; color: white;">
